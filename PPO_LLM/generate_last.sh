@@ -1,0 +1,1 @@
+python vllm_generate.py && python vllm_generate_neg.py
