@@ -22,10 +22,8 @@ from scipy import stats
 import matplotlib.pyplot as plt
 # from matplotlib.font_manager import FontProperties
 
-# # 指定本地字体文件路径
 # font_path = '/root/hdd/SimCSE/Microsoft Yahei.ttf'
 
-# # 创建字体属性对象
 # font_prop = FontProperties(fname=font_path)
 
 from senteval.utils import cosine
@@ -107,47 +105,26 @@ class STSEval(object):
         wavg_spearman = np.average(list_spr, weights=weights)
         all_pearson = pearsonr(all_sys_scores, all_gs_scores)
         all_spearman = spearmanr(all_sys_scores, all_gs_scores)
-        # 上1/4分位点
         q3 = np.percentile(all_sys_scores, 75)
-        # 下1/4分位点
         q1 = np.percentile(all_sys_scores, 25)
-        # 中位数
         median = np.median(all_sys_scores)
-        # 平均数
         mean = np.mean(all_sys_scores)
-        # 众数
         mode = stats.mode(all_sys_scores)
-        # 方差
         variance = np.var(all_sys_scores)
-        # 标准差
         std_deviation = np.std(all_sys_scores)
-        print("上1/4分位点:", q3)
-        print("下1/4分位点:", q1)
-        print("中位数:", median)
-        print("平均数:", mean)
-        print("众数:", mode)
-        print("方差:", variance)
-        print("标准差:", std_deviation)
-        # 清除之前的水平线
         plt.cla()
-
-        # 绘制箱线图
         # plt.boxplot(all_sys_scores)
         plt.hist(all_sys_scores, bins=50, edgecolor='black')
 
         
-        # 添加水平线表示上1/4分位点、下1/4分位点和中位数
         plt.axvline(q3, color='r', linestyle='--', label='Upper Quartile')
         plt.axvline(q1, color='g', linestyle='--', label='Lower Quartile')
         plt.axvline(median, color='b', linestyle='--', label='Median')
 
-        # 添加图例
         plt.legend()
 
-        # 保存图表为图片
         plt.savefig(self.taskname+'.png')
 
-        # 显示图表
         plt.show()
         results['all'] = {'pearson': {'all': all_pearson[0],
                                       'mean': avg_pearson,
