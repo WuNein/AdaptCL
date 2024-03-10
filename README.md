@@ -14,3 +14,15 @@ vllm is used to generate samples.
 ![Alt text](pic8.png)
 
 I am suggesting using different LLM at different stage, for better performance.
+
+## Citing
+
+```
+@inproceedings{wu24coling,
+    title = {Adaptive Reinforcement Tuning Language Models as Hard Data Generators for Sentence Representation},
+    author = {Bo Xu and Yifei Wu and Shouang Wei and Ming Du and Hongya Wang},
+    booktitle = {LREC-COLING},
+    month = {May},
+    year = {2024}
+}
+```
